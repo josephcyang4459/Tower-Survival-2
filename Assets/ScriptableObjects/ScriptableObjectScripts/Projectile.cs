@@ -10,4 +10,5 @@ public class Projectile : ScriptableObject {
     [SerializeField] public int knockback;
     [SerializeField] public int knockbackSpeed;
     [SerializeField] public int splash;
+    [SerializeField] public Sprite sprite;
 }
