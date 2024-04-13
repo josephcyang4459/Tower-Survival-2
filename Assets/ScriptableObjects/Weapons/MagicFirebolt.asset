@@ -15,4 +15,4 @@ MonoBehaviour:
   level: 0
   atkSpeed: 0
   range: 0
-  projectile: {fileID: 0}
+  projectile: {fileID: 11400000, guid: 4fcb9eda3aae818459f18560f8247c67, type: 2}
