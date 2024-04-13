@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1ab935b8e3d8d40b922688170d5771, type: 3}
   m_Name: GoldCursedBlood
   m_EditorClassIdentifier: 
+  description: Converts 50 health regen to 4000 gold. If health regen falls below
+    0, you will lose health every second.
   level: 0
-  flatRate: 0
+  maxLevel: 999
+  flatRate: -50
   percentRate: 0
+  goldCost: -4000

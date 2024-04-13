@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1ab935b8e3d8d40b922688170d5771, type: 3}
   m_Name: GoldBloodTransmutation
   m_EditorClassIdentifier: 
+  description: Converts 2000 max health to 2000 gold. If max health reaches or falls
+    below 0 hp, you die.
   level: 0
-  flatRate: 0
+  maxLevel: 999
+  flatRate: -2000
   percentRate: 0
+  goldCost: -2000

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1ab935b8e3d8d40b922688170d5771, type: 3}
   m_Name: DamageAdvancedAttacks
   m_EditorClassIdentifier: 
+  description: Increases all attack types by 5%
   level: 0
   maxLevel: 999
   flatRate: 0
   percentRate: 5
-  cost: 500
+  goldCost: 500

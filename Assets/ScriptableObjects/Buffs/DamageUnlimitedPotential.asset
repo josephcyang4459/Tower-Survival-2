@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1ab935b8e3d8d40b922688170d5771, type: 3}
   m_Name: DamageUnlimitedPotential
   m_EditorClassIdentifier: 
+  description: Increases all damage by 25%
   level: 0
+  maxLevel: 999
   flatRate: 0
-  percentRate: 0
+  percentRate: 25
+  goldCost: 2000
