@@ -6,9 +6,10 @@ using UnityEngine;
 public class Enemy : ScriptableObject {
     [SerializeField] public string description;
     [SerializeField] public int level;
-    [SerializeField] public int maxLevel;
     [SerializeField] public int health;
+    [SerializeField] public int maxHealth;
     [SerializeField] public int movementSpeed;
     [SerializeField] public int spawnPointCost;
+    [SerializeField] public Sprite sprite;
     [SerializeField] public Weapon weapon;
 }

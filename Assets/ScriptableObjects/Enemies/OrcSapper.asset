@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d1ab935b8e3d8d40b922688170d5771, type: 3}
-  m_Name: DamageAdvancedSlash
+  m_Script: {fileID: 11500000, guid: c255f03de58224c4cad0fb31d90dc103, type: 3}
+  m_Name: OrcSapper
   m_EditorClassIdentifier: 
-  description: Increases all slash damage by 10%
+  description: This goblin holds a dagger as a weapon.
   level: 0
-  maxLevel: 999
-  flatRate: 0
-  percentRate: 10
-  goldCost: 500
+  health: 0
+  maxHealth: 0
+  movementSpeed: 0
+  spawnPointCost: 0
+  sprite: {fileID: 0}
+  weapon: {fileID: 0}

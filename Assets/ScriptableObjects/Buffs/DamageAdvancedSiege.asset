@@ -16,5 +16,5 @@ MonoBehaviour:
   level: 0
   maxLevel: 999
   flatRate: 0
-  percentRate: 5
+  percentRate: 10
   goldCost: 500

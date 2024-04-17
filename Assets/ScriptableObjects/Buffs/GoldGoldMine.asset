@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1ab935b8e3d8d40b922688170d5771, type: 3}
   m_Name: GoldGoldMine
   m_EditorClassIdentifier: 
-  description: Increases income by 100 and gold made by other sources by 20%
+  description: Increases income by 100 and then by 20%
   level: 0
   maxLevel: 999
   flatRate: 100
