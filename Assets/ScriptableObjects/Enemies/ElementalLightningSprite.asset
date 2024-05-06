@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c255f03de58224c4cad0fb31d90dc103, type: 3}
   m_Name: ElementalLightningSprite
   m_EditorClassIdentifier: 
-  description: Small playful creatures originating from the aspect of creation. Touching
-    them can give you a burst of energy.
+  description: Small playful creatures originating from the aspect of creation. They
+    have enough power to turn on a lightbulb.
   level: 0
   health: 0
   maxHealth: 0

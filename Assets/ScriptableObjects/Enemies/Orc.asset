@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c255f03de58224c4cad0fb31d90dc103, type: 3}
   m_Name: Orc
   m_EditorClassIdentifier: 
-  description: This goblin holds a dagger as a weapon.
+  description: Creatues with green skin known for their strength and size.
   level: 0
   health: 0
   maxHealth: 0

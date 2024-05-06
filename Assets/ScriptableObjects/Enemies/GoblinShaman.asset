@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c255f03de58224c4cad0fb31d90dc103, type: 3}
   m_Name: GoblinShaman
   m_EditorClassIdentifier: 
-  description: Goblins believe that magic originates from their goblin god. This
-    is obviously not true, but goblins don't care.
+  description: Goblins believe that magic comes from their goblin god. This is not
+    true, though goblins don't know that.
   level: 0
   health: 0
   maxHealth: 0
