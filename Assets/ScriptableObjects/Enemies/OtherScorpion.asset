@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c255f03de58224c4cad0fb31d90dc103, type: 3}
   m_Name: OtherScorpion
   m_EditorClassIdentifier: 
-  description: This goblin holds a dagger as a weapon.
+  description: A small critter who can deliver a nasty sting that feels equivalent
+    to a bullet.
   level: 0
   health: 0
   maxHealth: 0
