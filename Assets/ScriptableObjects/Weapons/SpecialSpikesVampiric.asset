@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57acc209e9d413429f5ccab13c73b6d, type: 3}
   m_Name: SpecialSpikesVampiric
   m_EditorClassIdentifier: 
+  description: 
   level: 0
+  maxLevel: 0
   atkSpeed: 0
   range: 0
+  goldCost: 0
   projectile: {fileID: 0}
+  readyToFire: 1

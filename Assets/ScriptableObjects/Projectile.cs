@@ -6,7 +6,7 @@ using UnityEngine;
 public class Projectile : ScriptableObject {
     [SerializeField] public int projectileSpeed;
     [SerializeField] public int defaultDamage;
-    [SerializeField] public int damage;
+    [SerializeField] public int damagePerLevel;
     [SerializeField] public int knockback;
     [SerializeField] public int knockbackSpeed;
     [SerializeField] public int splash;

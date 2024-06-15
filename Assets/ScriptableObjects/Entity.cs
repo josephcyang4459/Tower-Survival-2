@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Tower", menuName = "ScriptableObjects/Tower")]
-public class Tower : ScriptableObject {
+public class Entity : ScriptableObject {
     [SerializeField] public int defaultHealth;
     [SerializeField] public int health;
     [SerializeField] public int maxHealth;
     [SerializeField] public int defaultShield;
     [SerializeField] public int shield;
     [SerializeField] public int maxShield;
-    [SerializeField] public int defaultIncome;
-    [SerializeField] public int income;
+    [SerializeField] public Sprite sprite;
 }
