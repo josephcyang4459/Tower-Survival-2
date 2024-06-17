@@ -15,17 +15,18 @@ public class Weapon : ScriptableObject {
 
     public void Reset() {
         level = 0;
-        projectile.GetComponent<ProjectileHandler>().updateDamage(level);
+        projectile.GetComponent<ProjectileHandler>().UpdateDamage(level);
         readyToFire = true;
     }
 
     public void UpgradeWeapon() {
         level++;
-        projectile.GetComponent<ProjectileHandler>().updateDamage(level);
+        projectile.GetComponent<ProjectileHandler>().UpdateDamage(level);
     }
 
     public void fireProjectile(GameObject target) {
         GameObject newProjectile = Instantiate(projectile);
-        newProjectile.GetComponent<ProjectileHandler>().target = target.transform;
+        newProjectile.GetComponent<ProjectileHandler>().target = target;
+        readyToFire = false;
     }
 }

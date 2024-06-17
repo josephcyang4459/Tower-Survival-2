@@ -9,7 +9,8 @@ public class ProjectileHandler : MonoBehaviour {
     [SerializeField] public int knockback;
     [SerializeField] public float knockbackSpeed;
     [SerializeField] public Sprite sprite;
-    [SerializeField] public Transform target;
+    [SerializeField] public GameObject target;
+    [SerializeField] public Collider2D col;
     [SerializeField] Projectile DefaultStats;
 
     // Start is called before the first frame update
@@ -22,13 +23,19 @@ public class ProjectileHandler : MonoBehaviour {
     }
 
     void Update() {
-        moveTowardsTarget();
+        if (col.IsTouching(target.GetComponent<Collider2D>())) { DealDamage(damage, target); }
+        else { MoveTowardsTarget(); }
     }
 
-    public void updateDamage(int weaponLevel) { damage = DefaultStats.defaultDamage + (weaponLevel * DefaultStats.damagePerLevel); }
+    public void UpdateDamage(int weaponLevel) { damage = DefaultStats.defaultDamage + (weaponLevel * DefaultStats.damagePerLevel); }
 
-    public void moveTowardsTarget() {
+    public void DealDamage(int damage, GameObject target) {
+        target.GetComponent<EnemyHandler>().TakeDamage(damage);
+        Destroy(gameObject);
+    }
+
+    public void MoveTowardsTarget() {
         var step = projectileSpeed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
     }
 }

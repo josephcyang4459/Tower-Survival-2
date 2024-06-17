@@ -15,4 +15,14 @@ public class EnemyHandler : MonoBehaviour {
         maxHealth = DefaultStats.maxHealth;
         sprite = DefaultStats.sprite;
     }
+
+    void FixedUpdate() { }
+
+    public void TakeDamage(int damage) {
+        health -= damage;
+        if (health <= 0)
+            Die();
+    }
+
+    public void Die() { Destroy(this); }
 }

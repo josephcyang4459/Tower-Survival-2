@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
-using UnityEngine.SocialPlatforms;
 
 public class PlayerHandler : MonoBehaviour
 {
@@ -12,26 +10,20 @@ public class PlayerHandler : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
-        for (int i = 0; i < EnemiesList.transform.childCount; i++) { enemies.Add(EnemiesList.transform.GetChild(i).gameObject); }
+        for (int i = 0; i < EnemiesList.transform.childCount; i++)
+            enemies.Add(EnemiesList.transform.GetChild(i).gameObject);
 
-        foreach (Weapon w in player.weapons) { w.Reset(); }
+        foreach (Weapon w in player.weapons)
+            w.Reset();
 
-
-        //TODO Need to make Projectile collide with the enemy and do damage
+        //TODO Need to allow Projectile to be fired again based on weapon attack speed
     }
 
     // Update is called once per frame
     void FixedUpdate() {
-        Debug.Log(enemies.Count);
-
-        foreach (GameObject e in enemies)
-            Debug.Log(e.name);
-        foreach (Weapon w in player.weapons) {
-            if (w.readyToFire) {
+        foreach (Weapon w in player.weapons)
+            if (w.readyToFire)
                 w.fireProjectile(enemies[0]);
-                w.readyToFire = false;
-            }
-        }
     }
 
     private void Reset() {
@@ -40,9 +32,5 @@ public class PlayerHandler : MonoBehaviour
         player.shield = player.defaultShield;
         player.maxShield = player.defaultShield;
         player.income = player.defaultIncome;
-    }
-
-    public void __Reset() {
-        Reset();
     }
 }
