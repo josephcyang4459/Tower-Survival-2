@@ -12,21 +12,38 @@ public class Weapon : ScriptableObject {
     [SerializeField] public int goldCost;
     [SerializeField] public GameObject projectile;
     public bool readyToFire = true;
+    public float trueRange;
+    public float trueAtkSpeed;
+    private float rangeToScaleRatio = 112.5f;
+    private float timestampFromLastFire;
 
     public void Reset() {
         level = 0;
+        trueRange = range / rangeToScaleRatio;
+        trueAtkSpeed = 2 / (1 + (atkSpeed / 100f));
         projectile.GetComponent<ProjectileHandler>().UpdateDamage(level);
         readyToFire = true;
     }
 
-    public void UpgradeWeapon() {
+    public void Upgrade() {
         level++;
         projectile.GetComponent<ProjectileHandler>().UpdateDamage(level);
     }
 
-    public void fireProjectile(GameObject target) {
+    public void Fire(GameObject target) {
         GameObject newProjectile = Instantiate(projectile);
         newProjectile.GetComponent<ProjectileHandler>().target = target;
         readyToFire = false;
+        timestampFromLastFire = Time.time;
+    }
+
+    public bool WithinRange(GameObject origin, GameObject target) { return Vector3.Distance(origin.transform.position, target.transform.position) < trueRange; }
+
+    public void CheckReadyToFire() {
+        float time = Time.time - timestampFromLastFire;
+        Debug.Log("Time: " + time + " vs. trueAtkSpeed: " + trueAtkSpeed);
+        if (time > trueAtkSpeed) {
+            readyToFire = true;
+        }
     }
 }

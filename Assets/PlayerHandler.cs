@@ -16,14 +16,18 @@ public class PlayerHandler : MonoBehaviour
         foreach (Weapon w in player.weapons)
             w.Reset();
 
-        //TODO Need to allow Projectile to be fired again based on weapon attack speed
+        //TODO Need to stop hard crash when enemy dies and there's another projectile targeting it. EX: When many axes are going to hit goblin and the first axe kills the goblin.
     }
 
     // Update is called once per frame
     void FixedUpdate() {
-        foreach (Weapon w in player.weapons)
-            if (w.readyToFire)
-                w.fireProjectile(enemies[0]);
+        if (enemies.Count > 0)
+            foreach (Weapon w in player.weapons) {
+                w.CheckReadyToFire();
+
+                if (w.WithinRange(gameObject, enemies[0]) && w.readyToFire)
+                    w.Fire(enemies[0]);
+            }
     }
 
     private void Reset() {

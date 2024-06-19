@@ -15,8 +15,10 @@ MonoBehaviour:
   description: 
   level: 0
   maxLevel: 99
-  atkSpeed: 1
+  atkSpeed: 100
   range: 600
   goldCost: 500
   projectile: {fileID: 2342400490387196176, guid: 09cd1e90b7c0d1647aff9dc2699e1610, type: 3}
   readyToFire: 0
+  trueRange: 5.3333335
+  trueAtkSpeed: 1

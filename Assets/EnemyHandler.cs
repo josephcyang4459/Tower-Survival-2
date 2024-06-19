@@ -16,13 +16,11 @@ public class EnemyHandler : MonoBehaviour {
         sprite = DefaultStats.sprite;
     }
 
-    void FixedUpdate() { }
-
     public void TakeDamage(int damage) {
         health -= damage;
         if (health <= 0)
             Die();
     }
 
-    public void Die() { Destroy(this); }
+    public void Die() { Destroy(gameObject); }
 }
