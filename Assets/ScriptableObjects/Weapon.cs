@@ -40,10 +40,7 @@ public class Weapon : ScriptableObject {
     public bool WithinRange(GameObject origin, GameObject target) { return Vector3.Distance(origin.transform.position, target.transform.position) < trueRange; }
 
     public void CheckReadyToFire() {
-        float time = Time.time - timestampFromLastFire;
-        Debug.Log("Time: " + time + " vs. trueAtkSpeed: " + trueAtkSpeed);
-        if (time > trueAtkSpeed) {
+        if (Time.time - timestampFromLastFire > trueAtkSpeed)
             readyToFire = true;
-        }
     }
 }

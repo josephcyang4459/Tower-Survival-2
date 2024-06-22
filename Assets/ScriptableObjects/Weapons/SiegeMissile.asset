@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57acc209e9d413429f5ccab13c73b6d, type: 3}
   m_Name: SiegeMissile
   m_EditorClassIdentifier: 
-  level: 0
-  atkSpeed: 0
-  range: 0
-  projectile: {fileID: 11400000, guid: 3278a5d87a6777548b9bb59d1501e309, type: 2}
+  description: 
+  level: 1
+  maxLevel: 99
+  atkSpeed: 10
+  range: 900
+  goldCost: 500
+  projectile: {fileID: 2342400490387196176, guid: d6df891ff568ef349a2c79931dac0121, type: 3}
+  readyToFire: 0
+  trueRange: 8
+  trueAtkSpeed: 1.8181819

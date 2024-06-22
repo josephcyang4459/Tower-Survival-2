@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -16,20 +17,19 @@ public class ProjectileHandler : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         projectileSpeed = DefaultStats.projectileSpeed;
-        damage = DefaultStats.defaultDamage;
         knockback = DefaultStats.knockback;
         knockbackSpeed = DefaultStats.knockbackSpeed;
         sprite = DefaultStats.sprite;
     }
 
     void Update() {
-        if (col.IsTouching(target.GetComponent<Collider2D>())) { DealDamage(damage, target); }
+        if (col.IsTouching(target.GetComponent<Collider2D>())) { DealDamage(target); }
         else { MoveTowardsTarget(); }
     }
 
     public void UpdateDamage(int weaponLevel) { damage = DefaultStats.defaultDamage + (weaponLevel * DefaultStats.damagePerLevel); }
 
-    public void DealDamage(int damage, GameObject target) {
+    public void DealDamage(GameObject target) {
         target.GetComponent<EnemyHandler>().TakeDamage(damage);
         Destroy(gameObject);
     }
@@ -37,5 +37,13 @@ public class ProjectileHandler : MonoBehaviour {
     public void MoveTowardsTarget() {
         var step = projectileSpeed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
+    }
+
+    private void Reset() {
+        projectileSpeed = DefaultStats.projectileSpeed;
+        damage = DefaultStats.defaultDamage;
+        knockback = DefaultStats.knockback;
+        knockbackSpeed = DefaultStats.knockbackSpeed;
+        sprite = DefaultStats.sprite;
     }
 }

@@ -7,5 +7,5 @@ using UnityEngine;
 public class Player : Entity {
     [SerializeField] public int defaultIncome;
     [SerializeField] public int income;
-    [SerializeField] public Weapon[] weapons;
+    [SerializeField] public List<Weapon> weapons;
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8876740231019634862}
   - component: {fileID: 5204187567608008218}
   m_Layer: 0
-  m_Name: Axe
+  m_Name: Missle
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   target: {fileID: 0}
   col: {fileID: 8876740231019634862}
-  DefaultStats: {fileID: 11400000, guid: 6a4645cc2a34a8847913c42e7e48e3ba, type: 2}
+  DefaultStats: {fileID: 11400000, guid: 3278a5d87a6777548b9bb59d1501e309, type: 2}
 --- !u!70 &8876740231019634862
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
