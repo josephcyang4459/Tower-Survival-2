@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CapsuleCollider2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class EnemyHandler : MonoBehaviour {
     [SerializeField] public int health;
     [SerializeField] public int maxHealth;
@@ -22,5 +24,8 @@ public class EnemyHandler : MonoBehaviour {
             Die();
     }
 
-    public void Die() { Destroy(gameObject); }
+    public void Die() {
+        PlayerHandler.inst.enemies.Remove(gameObject);
+        Destroy(gameObject);
+    }
 }

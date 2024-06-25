@@ -11,6 +11,7 @@ public class ProjectileHandler : MonoBehaviour {
     [SerializeField] public float knockbackSpeed;
     [SerializeField] public Sprite sprite;
     [SerializeField] public GameObject target;
+    [SerializeField] public Vector3 targetPosition;
     [SerializeField] public Collider2D col;
     [SerializeField] Projectile DefaultStats;
 
@@ -20,11 +21,18 @@ public class ProjectileHandler : MonoBehaviour {
         knockback = DefaultStats.knockback;
         knockbackSpeed = DefaultStats.knockbackSpeed;
         sprite = DefaultStats.sprite;
+        targetPosition = target.transform.position;
     }
 
     void Update() {
-        if (col.IsTouching(target.GetComponent<Collider2D>())) { DealDamage(target); }
-        else { MoveTowardsTarget(); }
+        if (target != null) {
+            targetPosition = target.transform.position;
+            if (col.IsTouching(target.GetComponent<Collider2D>())) { DealDamage(target); }
+            else { MoveTowardsTarget(target.transform.position); }
+        } else {
+            if (transform.position == targetPosition) { Destroy(gameObject); }
+            else { MoveTowardsTarget(targetPosition); }
+        }
     }
 
     public void UpdateDamage(int weaponLevel) { damage = DefaultStats.defaultDamage + (weaponLevel * DefaultStats.damagePerLevel); }
@@ -34,9 +42,9 @@ public class ProjectileHandler : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    public void MoveTowardsTarget() {
+    public void MoveTowardsTarget(Vector3 target) {
         var step = projectileSpeed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
+        transform.position = Vector3.MoveTowards(transform.position, target, step);
     }
 
     private void Reset() {

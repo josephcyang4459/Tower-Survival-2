@@ -25,8 +25,8 @@ public class Weapon : ScriptableObject {
         readyToFire = true;
     }
 
-    public void Upgrade() {
-        level++;
+    public void Upgrade(int upgradeAmount = 1) {
+        level += upgradeAmount;
         projectile.GetComponent<ProjectileHandler>().UpdateDamage(level);
     }
 
@@ -39,8 +39,5 @@ public class Weapon : ScriptableObject {
 
     public bool WithinRange(GameObject origin, GameObject target) { return Vector3.Distance(origin.transform.position, target.transform.position) < trueRange; }
 
-    public void CheckReadyToFire() {
-        if (Time.time - timestampFromLastFire > trueAtkSpeed)
-            readyToFire = true;
-    }
+    public void CheckReadyToFire() { if (Time.time - timestampFromLastFire > trueAtkSpeed) readyToFire = true; }
 }
