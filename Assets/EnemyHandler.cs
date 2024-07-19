@@ -16,6 +16,11 @@ public class EnemyHandler : MonoBehaviour {
         health = DefaultStats.health;
         maxHealth = DefaultStats.maxHealth;
         sprite = DefaultStats.sprite;
+        movementSpeed = DefaultStats.movementSpeed;
+    }
+
+    void Update() {
+        transform.position = Vector3.MoveTowards(transform.position, PlayerHandler.inst.transform.position, movementSpeed * Time.deltaTime);
     }
 
     public void TakeDamage(int damage) {

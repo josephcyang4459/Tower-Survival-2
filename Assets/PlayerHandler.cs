@@ -19,14 +19,12 @@ public class PlayerHandler : MonoBehaviour
         }
 
         Reset();
-
         for (int i = 0; i < EnemiesList.transform.childCount; i++)
             enemies.Add(EnemiesList.transform.GetChild(i).gameObject);
     }
 
     // Update is called once per frame
     void FixedUpdate() {
-        Debug.Log("Enemy Count: " + enemies.Count);
         if (enemies.Count > 0)
             foreach (Weapon w in player.weapons) {
                 w.CheckReadyToFire();
