@@ -13,14 +13,14 @@ public class ProjectileHandler : MonoBehaviour {
     [SerializeField] public GameObject target;
     [SerializeField] public Vector3 targetPosition;
     [SerializeField] public Collider2D col;
-    [SerializeField] Projectile DefaultStats;
+    [SerializeField] Projectile defaultStats;
 
     // Start is called before the first frame update
     void Start() {
-        projectileSpeed = DefaultStats.projectileSpeed;
-        knockback = DefaultStats.knockback;
-        knockbackSpeed = DefaultStats.knockbackSpeed;
-        sprite = DefaultStats.sprite;
+        projectileSpeed = defaultStats.projectileSpeed;
+        knockback = defaultStats.knockback;
+        knockbackSpeed = defaultStats.knockbackSpeed;
+        sprite = defaultStats.sprite;
         targetPosition = target.transform.position;
     }
 
@@ -35,7 +35,7 @@ public class ProjectileHandler : MonoBehaviour {
         }
     }
 
-    public void UpdateDamage(int weaponLevel) { damage = DefaultStats.defaultDamage + (weaponLevel * DefaultStats.damagePerLevel); }
+    public void UpdateDamage(int weaponLevel) { damage = defaultStats.defaultDamage + (weaponLevel * defaultStats.damagePerLevel); }
 
     public void DealDamage(GameObject target) {
         target.GetComponent<EnemyHandler>().TakeDamage(damage);
@@ -48,10 +48,10 @@ public class ProjectileHandler : MonoBehaviour {
     }
 
     private void Reset() {
-        projectileSpeed = DefaultStats.projectileSpeed;
-        damage = DefaultStats.defaultDamage;
-        knockback = DefaultStats.knockback;
-        knockbackSpeed = DefaultStats.knockbackSpeed;
-        sprite = DefaultStats.sprite;
+        projectileSpeed = defaultStats.projectileSpeed;
+        damage = defaultStats.defaultDamage;
+        knockback = defaultStats.knockback;
+        knockbackSpeed = defaultStats.knockbackSpeed;
+        sprite = defaultStats.sprite;
     }
 }

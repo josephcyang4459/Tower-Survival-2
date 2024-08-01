@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: c3a4c924ebd0cb74f8b268db600e9c17, type: 2}
-  EnemiesList: {fileID: 1347311656}
+  enemiesList: {fileID: 1347311656}
   enemies: []
 --- !u!212 &191865192
 SpriteRenderer:
@@ -748,8 +748,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 425159087}
-  - {fileID: 1241165730}
   - {fileID: 732959218}
+  - {fileID: 1241165730}
   - {fileID: 880597430}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1051,8 +1051,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 191865191}
-        m_TargetAssemblyTypeName: PlayerHandler, Assembly-CSharp
+      - m_Target: {fileID: 1347311658}
+        m_TargetAssemblyTypeName: SpawnHandler, Assembly-CSharp
         m_MethodName: SpawnEnemy
         m_Mode: 2
         m_Arguments:
@@ -1243,6 +1243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1347311657}
+  - component: {fileID: 1347311658}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -1266,6 +1267,22 @@ Transform:
   - {fileID: 571473405}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1347311658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347311656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff2e87cd39edf92438d4d51223d4da22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distToPlayer: 10
+  spawnPoints: 0
+  maxSpawnPoints: 0
+  defaultSpawnPoints: 10
 --- !u!1 &1388779076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,7 +1633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6572319160951857946, guid: 14c0810844008b64a9cde0f2c2d40849, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 6572319160951857946, guid: 14c0810844008b64a9cde0f2c2d40849, type: 3}
       propertyPath: m_LocalPosition.y

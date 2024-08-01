@@ -9,14 +9,14 @@ public class EnemyHandler : MonoBehaviour {
     [SerializeField] public int maxHealth;
     [SerializeField] public Sprite sprite;
     [SerializeField] public int movementSpeed;
-    [SerializeField] Enemy DefaultStats;
+    [SerializeField] Enemy defaultStats;
 
     // Start is called before the first frame update
     void Start() {
-        health = DefaultStats.health;
-        maxHealth = DefaultStats.maxHealth;
-        sprite = DefaultStats.sprite;
-        movementSpeed = DefaultStats.movementSpeed;
+        health = defaultStats.health;
+        maxHealth = defaultStats.maxHealth;
+        sprite = defaultStats.sprite;
+        movementSpeed = defaultStats.movementSpeed;
     }
 
     void Update() {

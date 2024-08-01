@@ -102,8 +102,7 @@ MonoBehaviour:
   maxHealth: 0
   sprite: {fileID: 0}
   movementSpeed: 0
-  col: {fileID: 5583030883156023328}
-  DefaultStats: {fileID: 11400000, guid: 2a9fa15783c4427458146c8ad703ad19, type: 2}
+  defaultStats: {fileID: 11400000, guid: 2a9fa15783c4427458146c8ad703ad19, type: 2}
 --- !u!70 &5583030883156023328
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHandler : MonoBehaviour
 {
     [SerializeField] Player player;
-    [SerializeField] GameObject EnemiesList;
+    [SerializeField] GameObject enemiesList;
     public List<GameObject> enemies = new List<GameObject>();
     public static PlayerHandler inst;
 
@@ -19,8 +19,8 @@ public class PlayerHandler : MonoBehaviour
         }
 
         Reset();
-        for (int i = 0; i < EnemiesList.transform.childCount; i++)
-            enemies.Add(EnemiesList.transform.GetChild(i).gameObject);
+        for (int i = 0; i < enemiesList.transform.childCount; i++)
+            enemies.Add(enemiesList.transform.GetChild(i).gameObject);
     }
 
     // Update is called once per frame
@@ -43,12 +43,6 @@ public class PlayerHandler : MonoBehaviour
             weapon.Upgrade();
             player.weapons.Add(weapon);
         }
-    }
-
-    public void SpawnEnemy(GameObject enemy) {
-        GameObject newEnemy = Instantiate(enemy);
-        newEnemy.transform.SetParent(GameObject.Find("Enemies").transform);
-        enemies.Add(newEnemy);
     }
 
     private void Reset() {

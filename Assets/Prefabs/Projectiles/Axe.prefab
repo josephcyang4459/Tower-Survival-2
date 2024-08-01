@@ -105,8 +105,9 @@ MonoBehaviour:
   knockbackSpeed: 0
   sprite: {fileID: 0}
   target: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
   col: {fileID: 8876740231019634862}
-  DefaultStats: {fileID: 11400000, guid: 6a4645cc2a34a8847913c42e7e48e3ba, type: 2}
+  defaultStats: {fileID: 11400000, guid: 6a4645cc2a34a8847913c42e7e48e3ba, type: 2}
 --- !u!70 &8876740231019634862
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
