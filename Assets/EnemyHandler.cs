@@ -9,7 +9,7 @@ public class EnemyHandler : MonoBehaviour {
     [SerializeField] public int maxHealth;
     [SerializeField] public Sprite sprite;
     [SerializeField] public int movementSpeed;
-    [SerializeField] Enemy defaultStats;
+    [SerializeField] public Enemy defaultStats;
 
     // Start is called before the first frame update
     void Start() {
