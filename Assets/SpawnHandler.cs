@@ -1,23 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.XR;
+using UnityEngine.Events;
 
 public class SpawnHandler : MonoBehaviour {
     [SerializeField] public int distToPlayer;
     [SerializeField] public int spawnPoints;
     [SerializeField] public int maxSpawnPoints;
     [SerializeField] public int defaultMaxSpawnPoints;
-    [SerializeField] public float SecondsInbetweenSpawns;
+    [SerializeField] public int spawnPointIncreasePerRound;
+    [SerializeField] public int secondsBeforeSpawns;
+    [SerializeField] public float secondsInbetweenSpawns;
+    [SerializeField] public float secondsInbetweenWaves;
     [SerializeField] public GameObject[] enemyPrefabs;
+    public UnityEvent goToNextWave;
     private float timestampFromLastSpawn;
+    private int RoundCount;
 
-    void Start() { Reset(); }
+    void Start() {
+        Reset();
+        goToNextWave.AddListener(UpdateSpawnPoints);
+    }
 
     void Update() {
-        if (ReadyToSpawn()) { SpawnEnemy(enemyPrefabs[0]); }
+        if (Time.time < secondsBeforeSpawns) return;
+        if (spawnPoints > 0) {
+            if (ReadyToSpawn()) {
+                SpawnEnemy(enemyPrefabs[0]);
+            }
+        } else {
+            if (Time.time - timestampFromLastSpawn >= secondsInbetweenWaves) {
+                RoundCount++;
+                goToNextWave.Invoke();
+            }
+        }
     }
+
+    void OnDestroy() { goToNextWave.RemoveListener(UpdateSpawnPoints); }
 
     public void SpawnEnemy(GameObject enemy) {
         GameObject newEnemy = Instantiate(enemy);
@@ -44,10 +61,12 @@ public class SpawnHandler : MonoBehaviour {
     public void Reset() {
         maxSpawnPoints = defaultMaxSpawnPoints;
         spawnPoints = maxSpawnPoints;
-        timestampFromLastSpawn = Time.time;
     }
 
-    private bool ReadyToSpawn() {
-        return (spawnPoints > 0) && (Time.time - timestampFromLastSpawn >= SecondsInbetweenSpawns);
+    public void UpdateSpawnPoints() {
+        maxSpawnPoints += spawnPointIncreasePerRound;
+        spawnPoints = maxSpawnPoints;
     }
+
+    private bool ReadyToSpawn() { return Time.time - timestampFromLastSpawn >= secondsInbetweenSpawns; }
 }

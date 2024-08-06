@@ -597,7 +597,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1283,9 +1283,15 @@ MonoBehaviour:
   spawnPoints: 0
   maxSpawnPoints: 0
   defaultMaxSpawnPoints: 10
-  SecondsInbetweenSpawns: 0.5
+  spawnPointIncreasePerRound: 2
+  secondsBeforeSpawns: 3
+  secondsInbetweenSpawns: 1.25
+  secondsInbetweenWaves: 3
   enemyPrefabs:
   - {fileID: 8701930457512727203, guid: 14c0810844008b64a9cde0f2c2d40849, type: 3}
+  goToNextWave:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1388779076
 GameObject:
   m_ObjectHideFlags: 0
