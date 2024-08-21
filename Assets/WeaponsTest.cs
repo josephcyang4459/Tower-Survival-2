@@ -5,13 +5,17 @@ using UnityEngine;
 
 public class WeaponsTest : MonoBehaviour {
     [SerializeField] TMP_Text text;
-    [SerializeField] Player player;
+    [SerializeField] PlayerHandler playerHandler;
+
+    void Start() {
+        playerHandler = PlayerHandler.inst;
+    }
 
     // Update is called once per frame
     void Update() {
         text.text = "Weapons\n";
-        foreach (Weapon w in player.weapons) {
-            text.text += w.name + "\n";
+        foreach (WeaponHandler weaponhandler in playerHandler.weaponhandlers) {
+            text.text += weaponhandler.name + "\n";
         }
     }
 }

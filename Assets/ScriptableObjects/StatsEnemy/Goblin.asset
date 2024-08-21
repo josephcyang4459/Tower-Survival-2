@@ -23,4 +23,4 @@ MonoBehaviour:
   level: 1
   movementSpeed: 1
   spawnPointCost: 1
-  weapon: {fileID: 0}
+  weapon: {fileID: 11400000, guid: 899c0d36e8880ba4b9b4f58b9e2f9305, type: 2}

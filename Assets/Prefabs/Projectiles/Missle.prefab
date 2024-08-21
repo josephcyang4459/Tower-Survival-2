@@ -100,14 +100,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 0
-  damage: 5
-  knockback: 0
-  knockbackSpeed: 0
   sprite: {fileID: 0}
-  target: {fileID: 0}
-  targetPosition: {x: 0, y: 0, z: 0}
   col: {fileID: 8876740231019634862}
-  defaultStats: {fileID: 11400000, guid: 3278a5d87a6777548b9bb59d1501e309, type: 2}
+  sourceWeapon: {fileID: 0}
+  target: {fileID: 0}
+  projectile: {fileID: 11400000, guid: 3278a5d87a6777548b9bb59d1501e309, type: 2}
 --- !u!70 &8876740231019634862
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -137,7 +134,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

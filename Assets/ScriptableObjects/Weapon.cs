@@ -1,43 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Weapon", menuName = "ScriptableObjects/Weapon")]
 public class Weapon : ScriptableObject {
+    [SerializeField] public WeaponType weaponType;
     [SerializeField] public string description;
     [SerializeField] public int level;
     [SerializeField] public int maxLevel;
     [SerializeField] public int atkSpeed;
-    [SerializeField] public int range;
     [SerializeField] public int goldCost;
+    [SerializeField] public int damage;
+    [SerializeField] public int defaultDamage;
+    [SerializeField] public int damagePerLevel;
+    [SerializeField] public int knockback;
+    [SerializeField] public int knockbackSpeed;
+    [SerializeField] public int splash;
+    [HideInInspector] public float secondsBetweenAttacks;
+
+    [Header("Ranged Weapon Parameters | Not Required for Melee Weapons")]
+    [SerializeField] public int range;
     [SerializeField] public GameObject projectile;
-    public bool readyToFire = true;
-    public float trueRange;
-    public float trueAtkSpeed;
-    private float rangeToScaleRatio = 112.5f;
-    private float timestampFromLastFire;
+    [HideInInspector] public float trueRange;
+    
+}
 
-    public void Reset() {
-        level = 0;
-        trueRange = range / rangeToScaleRatio;
-        trueAtkSpeed = 2 / (1 + (atkSpeed / 100f));
-        projectile.GetComponent<ProjectileHandler>().UpdateDamage(level);
-        readyToFire = true;
-    }
-
-    public void Upgrade(int upgradeAmount = 1) {
-        level += upgradeAmount;
-        projectile.GetComponent<ProjectileHandler>().UpdateDamage(level);
-    }
-
-    public void Fire(GameObject target) {
-        GameObject newProjectile = Instantiate(projectile);
-        newProjectile.GetComponent<ProjectileHandler>().target = target;
-        readyToFire = false;
-        timestampFromLastFire = Time.time;
-    }
-
-    public bool WithinRange(GameObject origin, GameObject target) { return Vector3.Distance(origin.transform.position, target.transform.position) < trueRange; }
-
-    public void CheckReadyToFire() { if (Time.time - timestampFromLastFire > trueAtkSpeed) readyToFire = true; }
+public enum WeaponType {
+    Melee,
+    Ranged
 }

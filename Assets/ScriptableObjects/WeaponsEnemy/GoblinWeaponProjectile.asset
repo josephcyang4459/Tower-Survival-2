@@ -9,22 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e57acc209e9d413429f5ccab13c73b6d, type: 3}
-  m_Name: SlashAxe
+  m_Script: {fileID: 11500000, guid: 438222ddba87530419290db9082d664b, type: 3}
+  m_Name: GoblinWeaponProjectile
   m_EditorClassIdentifier: 
-  weaponType: 1
-  description: 
-  level: 0
-  maxLevel: 99
-  atkSpeed: 25
-  goldCost: 500
-  damage: 5
+  projectileSpeed: 0
   defaultDamage: 5
   damagePerLevel: 5
   knockback: 0
   knockbackSpeed: 0
   splash: 0
-  secondsBetweenAttacks: 1.6
-  range: 600
-  projectile: {fileID: 2342400490387196176, guid: 09cd1e90b7c0d1647aff9dc2699e1610, type: 3}
-  trueRange: 5.3333335
+  sprite: {fileID: 0}

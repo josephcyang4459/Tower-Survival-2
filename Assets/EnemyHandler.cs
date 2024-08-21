@@ -4,33 +4,51 @@ using UnityEngine;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Health))]
+
 public class EnemyHandler : MonoBehaviour {
-    [SerializeField] public int health;
-    [SerializeField] public int maxHealth;
     [SerializeField] public Sprite sprite;
     [SerializeField] public int movementSpeed;
     [SerializeField] public Enemy defaultStats;
+    [SerializeField] WeaponHandler weaponhandler;
 
-    // Start is called before the first frame update
     void Start() {
-        health = defaultStats.health;
-        maxHealth = defaultStats.maxHealth;
-        sprite = defaultStats.sprite;
-        movementSpeed = defaultStats.movementSpeed;
+        Reset();
     }
 
     void Update() {
-        transform.position = Vector3.MoveTowards(transform.position, PlayerHandler.inst.transform.position, movementSpeed * Time.deltaTime);
+        GameObject player = PlayerHandler.inst.gameObject;
+
+        // If enemy has ranged weapon
+        if (weaponhandler.weapon.weaponType == WeaponType.Ranged) {
+            if (weaponhandler.WithinRange(gameObject, player)) {
+                if (weaponhandler.readyToFire) weaponhandler.Fire(player);
+            }
+            else {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
+            }
+        }
+            
+        // If enemy has melee weapon
+        else {
+            if (gameObject.GetComponent<Collider2D>().IsTouching(player.GetComponent<Collider2D>())) {
+                if (weaponhandler.readyToFire) weaponhandler.Fire(player);
+            }
+            else {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
+            }
+        }
     }
 
-    public void TakeDamage(int damage) {
-        health -= damage;
-        if (health <= 0)
-            Die();
+    void Reset() {
+        GetComponent<Health>().Reset();
+        sprite = defaultStats.sprite;
+        movementSpeed = defaultStats.movementSpeed;
+
+        weaponhandler.Reset();
     }
 
-    public void Die() {
+    private void OnDestroy() {
         PlayerHandler.inst.enemies.Remove(gameObject);
-        Destroy(gameObject);
     }
 }

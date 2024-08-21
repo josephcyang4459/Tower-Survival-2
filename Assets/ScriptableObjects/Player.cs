@@ -4,8 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Player", menuName = "ScriptableObjects/Player")]
-public class Player : Entity {
+public class Player : ScriptableObject {
     [SerializeField] public int defaultIncome;
     [SerializeField] public int income;
-    [SerializeField] public List<Weapon> weapons;
+    [SerializeField] public Sprite sprite;
 }

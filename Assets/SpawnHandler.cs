@@ -8,8 +8,10 @@ public class SpawnHandler : MonoBehaviour {
     [SerializeField] public int defaultMaxSpawnPoints;
     [SerializeField] public int spawnPointIncreasePerRound;
     [SerializeField] public int secondsBeforeSpawns;
-    [SerializeField] public float secondsInbetweenSpawns;
-    [SerializeField] public float secondsInbetweenWaves;
+    [SerializeField] public float spawnTimeBuffer;
+    [SerializeField] public float minSpawnTimeBuffer;
+    [SerializeField] public float SpawnTimeBufferDecreasePerRound;
+    [SerializeField] public float waveTimeBuffer;
     [SerializeField] public GameObject[] enemyPrefabs;
     public UnityEvent goToNextWave;
     private float timestampFromLastSpawn;
@@ -18,6 +20,7 @@ public class SpawnHandler : MonoBehaviour {
     void Start() {
         Reset();
         goToNextWave.AddListener(UpdateSpawnPoints);
+        goToNextWave.AddListener(UpdateSpawnTimeBuffer);
     }
 
     void Update() {
@@ -27,14 +30,17 @@ public class SpawnHandler : MonoBehaviour {
                 SpawnEnemy(enemyPrefabs[0]);
             }
         } else {
-            if (Time.time - timestampFromLastSpawn >= secondsInbetweenWaves) {
+            if (Time.time - timestampFromLastSpawn >= waveTimeBuffer) {
                 RoundCount++;
                 goToNextWave.Invoke();
             }
         }
     }
 
-    void OnDestroy() { goToNextWave.RemoveListener(UpdateSpawnPoints); }
+    void OnDestroy() {
+        goToNextWave.RemoveListener(UpdateSpawnPoints);
+        goToNextWave.RemoveListener(UpdateSpawnTimeBuffer);
+    }
 
     public void SpawnEnemy(GameObject enemy) {
         GameObject newEnemy = Instantiate(enemy);
@@ -68,5 +74,10 @@ public class SpawnHandler : MonoBehaviour {
         spawnPoints = maxSpawnPoints;
     }
 
-    private bool ReadyToSpawn() { return Time.time - timestampFromLastSpawn >= secondsInbetweenSpawns; }
+    public void UpdateSpawnTimeBuffer() {
+        if (spawnTimeBuffer - SpawnTimeBufferDecreasePerRound >= minSpawnTimeBuffer)
+            spawnTimeBuffer -= SpawnTimeBufferDecreasePerRound;
+    }
+
+    private bool ReadyToSpawn() { return Time.time - timestampFromLastSpawn >= spawnTimeBuffer; }
 }

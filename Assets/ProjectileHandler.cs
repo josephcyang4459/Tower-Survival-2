@@ -6,40 +6,30 @@ using UnityEngine;
 
 public class ProjectileHandler : MonoBehaviour {
     [SerializeField] public int projectileSpeed;
-    [SerializeField] public int damage;
-    [SerializeField] public int knockback;
-    [SerializeField] public float knockbackSpeed;
     [SerializeField] public Sprite sprite;
-    [SerializeField] public GameObject target;
-    [SerializeField] public Vector3 targetPosition;
     [SerializeField] public Collider2D col;
-    [SerializeField] Projectile defaultStats;
+    [SerializeField] public WeaponHandler sourceWeapon;
+    [HideInInspector] public GameObject target;
+    Vector3 targetPosition;
+    public Projectile projectile;
 
-    // Start is called before the first frame update
     void Start() {
-        projectileSpeed = defaultStats.projectileSpeed;
-        knockback = defaultStats.knockback;
-        knockbackSpeed = defaultStats.knockbackSpeed;
-        sprite = defaultStats.sprite;
+        projectileSpeed = projectile.projectileSpeed;
+        sprite = projectile.sprite;
         targetPosition = target.transform.position;
     }
 
     void Update() {
         if (target != null) {
             targetPosition = target.transform.position;
-            if (col.IsTouching(target.GetComponent<Collider2D>())) { DealDamage(target); }
-            else { MoveTowardsTarget(target.transform.position); }
+            if (col.IsTouching(target.GetComponent<Collider2D>())) {
+                sourceWeapon.DealDamage(target);
+                Destroy(gameObject);
+            } else { MoveTowardsTarget(targetPosition); }
         } else {
             if (transform.position == targetPosition) { Destroy(gameObject); }
             else { MoveTowardsTarget(targetPosition); }
         }
-    }
-
-    public void UpdateDamage(int weaponLevel) { damage = defaultStats.defaultDamage + (weaponLevel * defaultStats.damagePerLevel); }
-
-    public void DealDamage(GameObject target) {
-        target.GetComponent<EnemyHandler>().TakeDamage(damage);
-        Destroy(gameObject);
     }
 
     public void MoveTowardsTarget(Vector3 target) {
@@ -48,10 +38,7 @@ public class ProjectileHandler : MonoBehaviour {
     }
 
     private void Reset() {
-        projectileSpeed = defaultStats.projectileSpeed;
-        damage = defaultStats.defaultDamage;
-        knockback = defaultStats.knockback;
-        knockbackSpeed = defaultStats.knockbackSpeed;
-        sprite = defaultStats.sprite;
+        projectileSpeed = projectile.projectileSpeed;
+        sprite = projectile.sprite;
     }
 }

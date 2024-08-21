@@ -5,10 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Projectile", menuName = "ScriptableObjects/Projectile")]
 public class Projectile : ScriptableObject {
     [SerializeField] public int projectileSpeed;
-    [SerializeField] public int defaultDamage;
-    [SerializeField] public int damagePerLevel;
-    [SerializeField] public int knockback;
-    [SerializeField] public int knockbackSpeed;
-    [SerializeField] public int splash;
     [SerializeField] public Sprite sprite;
 }
