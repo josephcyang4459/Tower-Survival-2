@@ -13,6 +13,7 @@ public class EnemyHandler : MonoBehaviour {
     [SerializeField] WeaponHandler weaponhandler;
 
     void Start() {
+        gameObject.GetComponent<Health>().death.AddListener(Die);
         Reset();
     }
 
@@ -48,7 +49,10 @@ public class EnemyHandler : MonoBehaviour {
         weaponhandler.Reset();
     }
 
+    private void Die() { Destroy(gameObject); }
+
     private void OnDestroy() {
+        gameObject.GetComponent<Health>().death.RemoveListener(Die);
         PlayerHandler.inst.enemies.Remove(gameObject);
     }
 }

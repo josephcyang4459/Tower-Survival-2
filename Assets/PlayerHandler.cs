@@ -14,19 +14,23 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField] GameObject enemiesList;
     [SerializeField] public List<WeaponHandler> weaponhandlers;
     public List<GameObject> enemies = new List<GameObject>();
-    public static PlayerHandler inst;
-    public UnityEvent playerDamaged;
+    public static PlayerHandler inst { get; private set; }
 
     // Start is called before the first frame update
-    void Start() {
+
+    private void Awake() {
         if (inst == null) {
             inst = this;
-            DontDestroyOnLoad(inst);
+            DontDestroyOnLoad(this);
         } else {
-            Destroy(gameObject);
+            Destroy(this);
         }
+    }
 
+    void Start() {
         Reset();
+        gameObject.GetComponent<Health>().death.AddListener(Die);
+
         for (int i = 0; i < enemiesList.transform.childCount; i++)
             enemies.Add(enemiesList.transform.GetChild(i).gameObject);
     }
@@ -34,13 +38,10 @@ public class PlayerHandler : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate() {
         if (enemies.Count > 0)
-            foreach (WeaponHandler weaponhandler in weaponhandlers) {
-                if (enemies[0] != null) {
-                    if (weaponhandler.WithinRange(gameObject, enemies[0]) && weaponhandler.readyToFire) {
+            foreach (WeaponHandler weaponhandler in weaponhandlers)
+                if (enemies[0] != null)
+                    if (weaponhandler.WithinRange(gameObject, enemies[0]) && weaponhandler.readyToFire)
                         weaponhandler.Fire(enemies[0]);
-                    }
-                }
-            }
     }
 
     public void UpgradeWeapon(Weapon weapon) {
@@ -61,14 +62,31 @@ public class PlayerHandler : MonoBehaviour
     private void Reset() {
         GetComponent<Health>().Reset();
         GetComponent<Shield>().Reset();
-
         player.income = player.defaultIncome;
+        ResetWeapons();
+    }
 
+    private void ResetWeapons() {
         foreach (WeaponHandler weaponhandler in weaponhandlers) weaponhandler.Reset();
         weaponhandlers = new List<WeaponHandler>();
     }
 
-    public void Die() { Destroy(gameObject); }
+    public void Die() {
+        StartCoroutine(SlowDownTimeOnDeath(.5f, .05f, 10));
+        ResetWeapons();
+    }
+
+    IEnumerator SlowDownTimeOnDeath(float startTimeScale, float endTimeScale, int duration) {
+        Time.timeScale = startTimeScale;
+        float intervalTimeScaleReduction = (Time.timeScale - endTimeScale) / duration;
+
+        while (Time.timeScale > endTimeScale + intervalTimeScaleReduction) {
+            Time.timeScale -= intervalTimeScaleReduction;
+            yield return new WaitForSeconds(.1f);
+        }
+
+        Time.timeScale = endTimeScale;
+    }
 
     private void OnDestroy() { foreach (WeaponHandler weaponhandler in weaponhandlers) weaponhandler.Reset(); }
 }

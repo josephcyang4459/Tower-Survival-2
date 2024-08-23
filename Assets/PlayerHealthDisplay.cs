@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +9,16 @@ public class PlayerHealthDisplay : MonoBehaviour {
     [SerializeField] Slider shieldBarSlider;
     [SerializeField] Health playerHealth;
     [SerializeField] Shield playerShield;
+    [SerializeField] TMP_Text overlayText;
 
     // Start is called before the first frame update
     void Start() {
         Reset();
+
+        playerHealth.damaged.AddListener(UpdateHealthBar);
+        playerShield.damaged.AddListener(UpdateShieldBar);
+        playerHealth.damaged.AddListener(UpdateOverlayText);
+        playerShield.damaged.AddListener(UpdateOverlayText);
     }
 
     private void UpdateHealthBar() {
@@ -21,14 +28,21 @@ public class PlayerHealthDisplay : MonoBehaviour {
     private void UpdateShieldBar() {
         shieldBarSlider.value = (float) playerShield.value / playerShield.maxValue;
     }
+    
+    private void UpdateOverlayText() {
+        overlayText.text = (playerHealth.value + playerShield.value) + " / " + playerHealth.maxValue;
+    }
 
     void Reset() {
-        PlayerHandler.inst.playerDamaged.AddListener(UpdateHealthBar);
-        PlayerHandler.inst.playerDamaged.AddListener(UpdateShieldBar);
+        UpdateHealthBar();
+        UpdateShieldBar();
+        UpdateOverlayText();
     }
 
     void OnDestroy() {
-        PlayerHandler.inst.playerDamaged.RemoveListener(UpdateHealthBar);
-        PlayerHandler.inst.playerDamaged.RemoveListener(UpdateShieldBar);
+        playerHealth.damaged.RemoveListener(UpdateHealthBar);
+        playerShield.damaged.RemoveListener(UpdateShieldBar);
+        playerHealth.damaged.RemoveListener(UpdateOverlayText);
+        playerShield.damaged.RemoveListener(UpdateOverlayText);
     }
 }
