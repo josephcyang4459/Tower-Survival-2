@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30c67749941796b449316b47efabf764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultValue: 250
+  defaultValue: 5
   minValue: 0
   damaged:
     m_PersistentCalls:
@@ -978,7 +978,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 425159085}
-  playerHandler: {fileID: 0}
 --- !u!1 &723778842
 GameObject:
   m_ObjectHideFlags: 0
