@@ -37,6 +37,7 @@ public class WeaponHandler : MonoBehaviour
         Health health = target.GetComponent<Health>();
         Shield shield = target.GetComponent<Shield>();
 
+        // Shield Damage
         if (shield != null && shield.value != 0) {
             if (shield.value > weapon.damage)
                 shield.TakeDamage(weapon.damage);
@@ -44,7 +45,9 @@ public class WeaponHandler : MonoBehaviour
                 health.TakeDamage(weapon.damage - shield.value);
                 shield.TakeDamage(shield.value);
             }
-        } else {
+        }
+        // Health Damage
+        else if (health.value != 0) {
             if (health.value > weapon.damage)
                 health.TakeDamage(weapon.damage);
             else
