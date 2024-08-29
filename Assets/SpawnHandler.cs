@@ -14,20 +14,19 @@ public class SpawnHandler : MonoBehaviour {
     [SerializeField] public float SpawnTimeBufferDecreasePerRound;
     [SerializeField] public float waveTimeBuffer;
     [SerializeField] public GameObject[] enemyPrefabs;
-    public UnityEvent goToNextWave;
     private float timestampFromLastSpawn;
     private int RoundCount;
 
     void Start() {
         Reset();
-        goToNextWave.AddListener(UpdateSpawnPoints);
-        goToNextWave.AddListener(UpdateSpawnTimeBuffer);
+        EventHandler.inst.goToNextWave.AddListener(UpdateSpawnPoints);
+        EventHandler.inst.goToNextWave.AddListener(UpdateSpawnTimeBuffer);
         StartCoroutine(SpawnWave(secondsBeforeSpawns));
     }
 
     void OnDestroy() {
-        goToNextWave.RemoveListener(UpdateSpawnPoints);
-        goToNextWave.RemoveListener(UpdateSpawnTimeBuffer);
+        EventHandler.inst.goToNextWave.RemoveListener(UpdateSpawnPoints);
+        EventHandler.inst.goToNextWave.RemoveListener(UpdateSpawnTimeBuffer);
     }
 
     IEnumerator SpawnWave(float waitTime) {
@@ -39,7 +38,7 @@ public class SpawnHandler : MonoBehaviour {
             yield return new WaitForSeconds(spawnTimeBuffer);
         }
 
-        goToNextWave.Invoke();
+        EventHandler.inst.goToNextWave.Invoke();
         StartCoroutine(SpawnWave(waveTimeBuffer));
     }
 

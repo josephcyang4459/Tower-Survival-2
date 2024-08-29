@@ -11,7 +11,6 @@ public class PlayerHealthDisplay : MonoBehaviour {
     [SerializeField] Shield playerShield;
     [SerializeField] TMP_Text overlayText;
 
-    // Start is called before the first frame update
     void Start() {
         Reset();
 

@@ -6,7 +6,6 @@ using UnityEngine;
 public class WeaponsTest : MonoBehaviour {
     [SerializeField] TMP_Text text;
 
-    // Update is called once per frame
     void Update() {
         text.text = "Weapons\n";
         foreach (WeaponHandler weaponhandler in PlayerHandler.inst.weaponhandlers)

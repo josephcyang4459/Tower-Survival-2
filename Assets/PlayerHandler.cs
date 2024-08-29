@@ -8,23 +8,19 @@ using UnityEngine.Events;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent (typeof(Health))]
 [RequireComponent(typeof(Shield))]
-public class PlayerHandler : MonoBehaviour
-{
+public class PlayerHandler : MonoBehaviour {
     [SerializeField] public Player player;
     [SerializeField] GameObject enemiesList;
     [SerializeField] public List<WeaponHandler> weaponhandlers;
     public List<GameObject> enemies = new List<GameObject>();
     public static PlayerHandler inst { get; private set; }
 
-    // Start is called before the first frame update
-
     private void Awake() {
         if (inst == null) {
             inst = this;
             DontDestroyOnLoad(this);
-        } else {
+        } else
             Destroy(this);
-        }
     }
 
     void Start() {
@@ -35,13 +31,21 @@ public class PlayerHandler : MonoBehaviour
             enemies.Add(enemiesList.transform.GetChild(i).gameObject);
     }
 
-    // Update is called once per frame
     void FixedUpdate() {
         if (enemies.Count > 0)
             foreach (WeaponHandler weaponhandler in weaponhandlers)
                 if (enemies[0] != null)
                     if (weaponhandler.WithinRange(gameObject, enemies[0]) && weaponhandler.readyToFire)
                         weaponhandler.Fire(enemies[0]);
+    }
+
+    public void UpgradeItem(ScriptableObject item) {
+        if (item.GetType() == typeof(Weapon)) {
+            UpgradeWeapon((Weapon)item);
+        }
+        else {
+            //This is where you would upgrade a buff
+        }
     }
 
     public void UpgradeWeapon(Weapon weapon) {
