@@ -8,7 +8,7 @@ public class EventHandler : MonoBehaviour {
     public static EventHandler inst { get; private set; }
     public UnityEvent goToNextWave;
 
-    private void Start() {
+    private void Awake() {
         if (inst == null) {
             inst = this;
             DontDestroyOnLoad(this);

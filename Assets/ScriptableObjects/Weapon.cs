@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -23,7 +24,11 @@ public class Weapon : ScriptableObject {
     [SerializeField] public int range;
     [SerializeField] public GameObject projectile;
     [HideInInspector] public float trueRange;
-    
+
+ public override string ToString() {
+        Match match = Regex.Match(name, @"(?<type>[A-Z][a-z]+)(?<name>([A-Z][a-z]+)+)");
+        return match.Groups["name"].Value;
+    }
 }
 
 public enum WeaponType {

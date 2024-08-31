@@ -11,10 +11,10 @@ public class StoreItemsHandler : MonoBehaviour {
 
     void Start() {
         EventHandler.inst.goToNextWave.AddListener(RefreshStoreItems);
-        RefreshStoreItems();
-
         for (int i = 0; i < gameObject.transform.childCount; i++)
             currentItems.Add(gameObject.transform.GetChild(i).gameObject);
+
+        RefreshStoreItems();
     }
 
     void OnDestroy() { EventHandler.inst.goToNextWave.RemoveListener(RefreshStoreItems); }
@@ -23,7 +23,7 @@ public class StoreItemsHandler : MonoBehaviour {
         foreach (GameObject item in currentItems) {
             ScriptableObject generatedItem = possibleItems[Random.Range(0, possibleItems.Count)];
             item.GetComponent<Button>().onClick.AddListener(() => PlayerHandler.inst.UpgradeItem(generatedItem));
-            item.GetComponentInChildren<TextMeshProUGUI>().text = generatedItem.name;
+            item.GetComponentInChildren<TextMeshProUGUI>().text = generatedItem.ToString();
         }
     }
 }
