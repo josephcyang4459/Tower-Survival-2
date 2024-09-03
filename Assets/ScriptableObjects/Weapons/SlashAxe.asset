@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57acc209e9d413429f5ccab13c73b6d, type: 3}
   m_Name: SlashAxe
   m_EditorClassIdentifier: 
-  weaponType: 1
   description: 
   level: 0
   maxLevel: 99
-  atkSpeed: 25
   goldCost: 500
+  weaponType: 1
   damage: 5
   defaultDamage: 5
   damagePerLevel: 5
+  damageType: 0
+  atkSpeed: 25
   knockback: 0
   knockbackSpeed: 0
   splash: 0

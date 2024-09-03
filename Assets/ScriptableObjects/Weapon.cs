@@ -5,16 +5,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Weapon", menuName = "ScriptableObjects/Weapon")]
-public class Weapon : ScriptableObject {
+public class Weapon : Item {
     [SerializeField] public WeaponType weaponType;
-    [SerializeField] public string description;
-    [SerializeField] public int level;
-    [SerializeField] public int maxLevel;
-    [SerializeField] public int atkSpeed;
-    [SerializeField] public int goldCost;
     [SerializeField] public int damage;
     [SerializeField] public int defaultDamage;
     [SerializeField] public int damagePerLevel;
+    [SerializeField] public DamageType damageType;
+    [SerializeField] public int atkSpeed;
     [SerializeField] public int knockback;
     [SerializeField] public int knockbackSpeed;
     [SerializeField] public int splash;
@@ -24,14 +21,17 @@ public class Weapon : ScriptableObject {
     [SerializeField] public int range;
     [SerializeField] public GameObject projectile;
     [HideInInspector] public float trueRange;
-
- public override string ToString() {
-        Match match = Regex.Match(name, @"(?<type>[A-Z][a-z]+)(?<name>([A-Z][a-z]+)+)");
-        return match.Groups["name"].Value;
-    }
 }
 
 public enum WeaponType {
     Melee,
     Ranged
+}
+
+public enum DamageType {
+    Slash,
+    Pierce,
+    Siege,
+    Magic,
+    Spikes
 }
