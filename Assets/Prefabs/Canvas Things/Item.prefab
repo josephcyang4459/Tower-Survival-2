@@ -102,7 +102,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -140,8 +140,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 8193666323847949657}
-          m_TargetAssemblyTypeName: StoreItemInfo, Assembly-CSharp
-          m_MethodName: ChangeCanvasGroupAlpha
+          m_TargetAssemblyTypeName: StoreItem, Assembly-CSharp
+          m_MethodName: ChangeDescriptionCanvasGroupAlpha
           m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -156,8 +156,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 8193666323847949657}
-          m_TargetAssemblyTypeName: StoreItemInfo, Assembly-CSharp
-          m_MethodName: ChangeCanvasGroupAlpha
+          m_TargetAssemblyTypeName: StoreItem, Assembly-CSharp
+          m_MethodName: ChangeDescriptionCanvasGroupAlpha
           m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -667,6 +667,7 @@ GameObject:
   - component: {fileID: 5527529779863150540}
   - component: {fileID: 5524370438873511132}
   - component: {fileID: 8193666323847949657}
+  - component: {fileID: 1065837442742390240}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -716,14 +717,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: {fileID: 4444717803572136049}
-  itemLevel: {fileID: 0}
   goldCost: {fileID: 5095626654764823229}
   itemDescriptionText: {fileID: 1891255349356566609}
-  itemDescriptionCanvasGroup: {fileID: 8675093257213932708}
+  descriptionCanvasGroup: {fileID: 8675093257213932708}
+  itemCanvasGroup: {fileID: 1065837442742390240}
   details: {fileID: 2985808468815313202}
   emptyDetailsPrefab: {fileID: 6274552867982603128, guid: d12e031a05d31c44bb8cc3bc64b0df73, type: 3}
   itemDetailPrefab: {fileID: 3404287297059612684, guid: 2284c9765571d734ab1553740e4e6fce, type: 3}
   bottomFiller: {fileID: 117811534781442283, guid: 7abf5410fc56fe24d87710d2ace1574b, type: 3}
+--- !u!225 &1065837442742390240
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4494762096337439583}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5906886289513025479
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,7 +1522,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.9
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

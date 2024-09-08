@@ -4,42 +4,50 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class StoreItem : MonoBehaviour {
     [Header("These are all references for auto-text-generation during game")]
     [SerializeField] public TMP_Text itemName;
-    [SerializeField] public TMP_Text itemLevel;
     [SerializeField] public TMP_Text goldCost;
     [SerializeField] public TMP_Text itemDescriptionText;
-    [SerializeField] public CanvasGroup itemDescriptionCanvasGroup;
     [SerializeField] public GameObject details;
 
-    [Header("Prefabs used for item description OnPointerEnter")]
+    [Header("Except for this one, this one is used for item visibility")]
+    [SerializeField] public CanvasGroup descriptionCanvasGroup;
+
+    [Header("Prefabs used for item description creation OnPointerEnter")]
     [SerializeField] GameObject emptyDetailsPrefab;
     [SerializeField] GameObject itemDetailPrefab;
     [SerializeField] GameObject bottomFiller;
 
-    public void ChangeCanvasGroupAlpha(float alpha) { itemDescriptionCanvasGroup.alpha = alpha; }
-
-    public void ChangeOnHoverItemDescription(Weapon weapon) {
-        DetailsReset();
-        itemName.text = weapon.ToString();
-        goldCost.text = weapon.goldCost.ToString();
-        itemDescriptionText.text = "";
-
-        CreateItemDetail("DAMAGE:", weapon.damage.ToString());
-        CreateItemDetail("DAMAGE TYPE:", weapon.damageType.ToString());
-        CreateItemDetail("RANGE:", weapon.range.ToString());
-        CreateNonDetail(bottomFiller);
+    private void Start() {
+        // Makes item disapear when clicked
+        gameObject.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => { gameObject.GetComponent<CanvasGroup>().alpha = 0; });
     }
 
-    public void ChangeOnHoverItemDescription(Buff buff) {
-        DetailsReset();
-        itemName.text = buff.ToString();
-        goldCost.text = buff.goldCost.ToString();
-        itemDescriptionText.text = buff.description;
+    public void ChangeDescriptionCanvasGroupAlpha(float alpha) { descriptionCanvasGroup.alpha = alpha; }
 
-        CreateItemDetail("FLAT INCREASE:", buff.flatRate.ToString());
-        CreateItemDetail("PERCENT INCREASE:", buff.percentRate.ToString());
+    public void ChangeOnHoverItemDescription(Item item) {
+        DetailsReset();
+        itemName.text = item.ToString();
+        goldCost.text = item.goldCost.ToString();
+
+        if (item.GetType() == typeof(Weapon)) {
+            Weapon tempItem = (Weapon) item;
+            itemDescriptionText.text = "";
+
+            CreateItemDetail("DAMAGE:", tempItem.damage.ToString());
+            CreateItemDetail("DAMAGE TYPE:", tempItem.damageType.ToString());
+            CreateItemDetail("RANGE:", tempItem.range.ToString());
+        }
+        else {
+            Buff tempItem = (Buff) item;
+            itemDescriptionText.text = item.description;
+
+            CreateItemDetail("FLAT INCREASE:", tempItem.flatRate.ToString());
+            CreateItemDetail("PERCENT INCREASE:", tempItem.percentRate.ToString());
+        }
+
         CreateNonDetail(bottomFiller);
     }
 
