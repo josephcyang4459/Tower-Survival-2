@@ -8,6 +8,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent (typeof(Health))]
 [RequireComponent(typeof(Shield))]
+[RequireComponent(typeof(RefreshHandler))]
 public class PlayerHandler : MonoBehaviour {
     [SerializeField] public Player player;
     [SerializeField] GameObject enemiesList;
@@ -43,8 +44,12 @@ public class PlayerHandler : MonoBehaviour {
         if (item.GetType() == typeof(Weapon)) {
             UpgradeWeapon((Weapon)item);
         }
-        else {
+        else if (item.GetType() == typeof(Buff)) {
             //This is where you would upgrade a buff
+        }
+        else {
+            // This means that it's neither a weapon or buff, which the only thing would be the refresh item
+            UpgradeRefresh();
         }
     }
 
@@ -63,11 +68,14 @@ public class PlayerHandler : MonoBehaviour {
         weaponhandlers.Add(newWeaponHandler);
     }
 
+    public void UpgradeRefresh() { gameObject.GetComponent<RefreshHandler>().Upgrade(); }
+
     private void Reset() {
         GetComponent<Health>().Reset();
         GetComponent<Shield>().Reset();
         player.income = player.defaultIncome;
         ResetWeapons();
+        GetComponent<RefreshHandler>().Reset();
     }
 
     private void ResetWeapons() {

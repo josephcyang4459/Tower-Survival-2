@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "GenericItem", menuName = "ScriptableObjects/GenericItem")]
 public class Item : ScriptableObject {
     [SerializeField] public string description;
     [SerializeField] public int level;

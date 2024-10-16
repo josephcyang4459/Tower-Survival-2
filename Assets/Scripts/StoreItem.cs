@@ -20,11 +20,6 @@ public class StoreItem : MonoBehaviour {
     [SerializeField] GameObject itemDetailPrefab;
     [SerializeField] GameObject bottomFiller;
 
-    private void Start() {
-        // Makes item disapear when clicked
-        gameObject.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => { gameObject.GetComponent<CanvasGroup>().alpha = 0; });
-    }
-
     public void ChangeDescriptionCanvasGroupAlpha(float alpha) { descriptionCanvasGroup.alpha = alpha; }
 
     public void ChangeOnHoverItemDescription(Item item) {
@@ -40,12 +35,15 @@ public class StoreItem : MonoBehaviour {
             CreateItemDetail("DAMAGE TYPE:", tempItem.damageType.ToString());
             CreateItemDetail("RANGE:", tempItem.range.ToString());
         }
-        else {
+        else if (item.GetType() == typeof(Buff)) {
             Buff tempItem = (Buff) item;
             itemDescriptionText.text = item.description;
 
             CreateItemDetail("FLAT INCREASE:", tempItem.flatRate.ToString());
             CreateItemDetail("PERCENT INCREASE:", tempItem.percentRate.ToString());
+        }
+        else {
+            itemDescriptionText.text = item.description;
         }
 
         CreateNonDetail(bottomFiller);

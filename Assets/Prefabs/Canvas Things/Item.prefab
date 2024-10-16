@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -121,7 +121,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7402813560078253085}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1065837442742390240}
+        m_TargetAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
+        m_MethodName: set_alpha
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &381063168477004302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,7 +694,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4494762096337439583}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -719,9 +731,8 @@ MonoBehaviour:
   itemName: {fileID: 4444717803572136049}
   goldCost: {fileID: 5095626654764823229}
   itemDescriptionText: {fileID: 1891255349356566609}
-  descriptionCanvasGroup: {fileID: 8675093257213932708}
-  itemCanvasGroup: {fileID: 1065837442742390240}
   details: {fileID: 2985808468815313202}
+  descriptionCanvasGroup: {fileID: 8675093257213932708}
   emptyDetailsPrefab: {fileID: 6274552867982603128, guid: d12e031a05d31c44bb8cc3bc64b0df73, type: 3}
   itemDetailPrefab: {fileID: 3404287297059612684, guid: 2284c9765571d734ab1553740e4e6fce, type: 3}
   bottomFiller: {fileID: 117811534781442283, guid: 7abf5410fc56fe24d87710d2ace1574b, type: 3}
@@ -1522,7 +1533,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 23.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

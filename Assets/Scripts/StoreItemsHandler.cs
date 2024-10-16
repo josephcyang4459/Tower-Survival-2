@@ -1,29 +1,51 @@
-using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class StoreItemsHandler : MonoBehaviour {
+    [SerializeField] Item refreshItem;
     [SerializeField] List<Item> possibleItems;
     [SerializeField] List<GameObject> currentItems;
+    [SerializeField] float refreshTime;
+    [SerializeField] Slider TimerSlider;
     [SerializeField] GameObject dividerPrefab;
     [SerializeField] GameObject itemDetailPrefab;
     [SerializeField] GameObject bottomFiller;
 
+    float currentRefreshTime;
+
     void Start() {
-        EventHandler.inst.goToNextWave.AddListener(RefreshStoreItems);
-        for (int i = 0; i < gameObject.transform.childCount; i++) {
+        // The first item is always the refresh item, hence why we skip it in favor of actual store items
+        for (int i = 1; i < gameObject.transform.childCount; i++) {
             currentItems.Add(gameObject.transform.GetChild(i).gameObject);
         }
 
-        RefreshStoreItems();
+        currentRefreshTime = refreshTime;
+        StartCoroutine(RefreshStoreItemsCoroutine());
     }
 
-    void OnDestroy() { EventHandler.inst.goToNextWave.RemoveListener(RefreshStoreItems); }
+    IEnumerator RefreshStoreItemsCoroutine() {
+        // Reset refresh item
+        PlayerHandler.inst.GetComponent<RefreshHandler>().Reset();
+        RefreshStoreItems();
+
+        while (currentRefreshTime > 0) {
+            yield return new WaitForSeconds(Time.deltaTime);
+            currentRefreshTime -= Time.deltaTime;
+            TimerSlider.value = currentRefreshTime / refreshTime;
+        }
+
+        currentRefreshTime = refreshTime;
+
+        StartCoroutine(RefreshStoreItemsCoroutine());
+    }
 
     public void RefreshStoreItems() {
+        gameObject.transform.GetChild(0).gameObject.GetComponent<StoreItem>().ChangeOnHoverItemDescription(refreshItem);
+
         foreach (GameObject item in currentItems) {
             // Makes item visible
             item.GetComponent<CanvasGroup>().alpha = 1;

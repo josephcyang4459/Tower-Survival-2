@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponHandler : MonoBehaviour
-{
+public class WeaponHandler : MonoBehaviour {
     [SerializeField] public Weapon weapon;
     [SerializeField] public bool readyToFire = true;
+
     public void Reset() {
         weapon.level = 0;
         weapon.trueRange = weapon.range / 112.5f;
