@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 191865193}
   - component: {fileID: 191865192}
   - component: {fileID: 191865191}
+  - component: {fileID: 191865200}
   - component: {fileID: 191865199}
   - component: {fileID: 191865198}
   - component: {fileID: 191865196}
@@ -306,6 +307,19 @@ MonoBehaviour:
       m_Calls: []
   value: 0
   maxValue: 0
+--- !u!114 &191865200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191865190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 607b4fe0cec8a5b4cbdc3b173d1828de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refresh: {fileID: 11400000, guid: a2f77d0a25126d24998e828720fd1beb, type: 2}
 --- !u!1 &233147585
 GameObject:
   m_ObjectHideFlags: 0
@@ -4934,6 +4948,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 191865200}
+        m_TargetAssemblyTypeName: RefreshHandler, Assembly-CSharp
+        m_MethodName: Upgrade
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1039269030}
         m_TargetAssemblyTypeName: StoreItemsHandler, Assembly-CSharp
         m_MethodName: RefreshStoreItems
