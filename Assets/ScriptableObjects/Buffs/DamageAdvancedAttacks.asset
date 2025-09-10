@@ -15,6 +15,11 @@ MonoBehaviour:
   description: Increases all attack types by 5%
   level: 0
   maxLevel: 999
+  goldCost: 500
+  buffType: 0
   flatRate: 0
   percentRate: 5
-  goldCost: 500
+  defaultFlatRate: 0
+  defaultPercentRate: 5
+  flatRatePerLevel: 0
+  percentRatePerLevel: 5
