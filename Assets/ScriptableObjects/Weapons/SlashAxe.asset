@@ -27,5 +27,5 @@ MonoBehaviour:
   splash: 0
   secondsBetweenAttacks: 1.6
   range: 600
-  projectile: {fileID: 2342400490387196176, guid: 09cd1e90b7c0d1647aff9dc2699e1610, type: 3}
+  projectilePrefab: {fileID: 2342400490387196176, guid: 09cd1e90b7c0d1647aff9dc2699e1610, type: 3}
   trueRange: 5.3333335

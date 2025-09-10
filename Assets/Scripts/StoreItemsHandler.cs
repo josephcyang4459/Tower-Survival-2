@@ -52,6 +52,9 @@ public class StoreItemsHandler : MonoBehaviour {
 
             // Picks a random upgrade to make available
             Item generatedItem = possibleItems[Random.Range(0, possibleItems.Count)];
+
+            // Reset Listeners
+            item.transform.GetChild(0).GetComponent<Button>().onClick.RemoveAllListeners();
             item.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => PlayerHandler.inst.UpgradeItem(generatedItem));
 
             // This would be where the image is changed. Current there are no images, hence why the text is changed instead

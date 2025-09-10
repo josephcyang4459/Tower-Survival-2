@@ -12,19 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57acc209e9d413429f5ccab13c73b6d, type: 3}
   m_Name: SiegeMissile
   m_EditorClassIdentifier: 
-  weaponType: 1
   description: 
   level: 0
   maxLevel: 99
-  atkSpeed: 10
   goldCost: 500
+  weaponType: 1
   damage: 5
   defaultDamage: 5
   damagePerLevel: 5
+  damageType: 2
+  atkSpeed: 10
   knockback: 0
   knockbackSpeed: 0
   splash: 0
   secondsBetweenAttacks: 1.8181819
   range: 900
-  projectile: {fileID: 2342400490387196176, guid: d6df891ff568ef349a2c79931dac0121, type: 3}
+  projectilePrefab: {fileID: 2342400490387196176, guid: d6df891ff568ef349a2c79931dac0121, type: 3}
   trueRange: 8

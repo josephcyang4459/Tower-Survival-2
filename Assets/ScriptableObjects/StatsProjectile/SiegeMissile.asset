@@ -12,10 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438222ddba87530419290db9082d664b, type: 3}
   m_Name: SiegeMissile
   m_EditorClassIdentifier: 
-  projectileSpeed: 5
-  defaultDamage: 5
-  damagePerLevel: 5
-  knockback: 10
-  knockbackSpeed: 10
-  splash: 5
-  sprite: {fileID: 0}
+  projectileSpeed: 10
+  sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}

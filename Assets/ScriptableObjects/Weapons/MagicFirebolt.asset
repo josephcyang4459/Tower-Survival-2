@@ -12,7 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57acc209e9d413429f5ccab13c73b6d, type: 3}
   m_Name: MagicFirebolt
   m_EditorClassIdentifier: 
+  description: 
   level: 0
-  atkSpeed: 0
-  range: 0
-  projectile: {fileID: 11400000, guid: 4fcb9eda3aae818459f18560f8247c67, type: 2}
+  maxLevel: 99
+  goldCost: 1000
+  weaponType: 1
+  damage: 20
+  defaultDamage: 20
+  damagePerLevel: 20
+  damageType: 3
+  atkSpeed: 5
+  knockback: 0
+  knockbackSpeed: 0
+  splash: 0
+  secondsBetweenAttacks: 1.9047619
+  range: 900
+  projectilePrefab: {fileID: 2342400490387196176, guid: 979547aacd5f6f94097fc2b6776a395b, type: 3}
+  trueRange: 8

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,6 +14,7 @@ public class PlayerHandler : MonoBehaviour {
     [SerializeField] public Player player;
     [SerializeField] GameObject enemiesList;
     [SerializeField] public List<WeaponHandler> weaponhandlers;
+    [SerializeField] public List<BuffHandler> buffhandlers;
     public List<GameObject> enemies = new List<GameObject>();
     public static PlayerHandler inst { get; private set; }
 
@@ -46,6 +48,7 @@ public class PlayerHandler : MonoBehaviour {
         }
         else if (item.GetType() == typeof(Buff)) {
             //This is where you would upgrade a buff
+            UpgradeBuff((Buff)item);
         }
         else {
             // This means that it's neither a weapon or buff, which the only thing would be the refresh item
@@ -68,6 +71,21 @@ public class PlayerHandler : MonoBehaviour {
         weaponhandlers.Add(newWeaponHandler);
     }
 
+    public void UpgradeBuff(Buff buff) {
+        for (int i = 0; i < buffhandlers.Count; i++) {
+            if (buffhandlers[i].buff == buff) {
+                buffhandlers[i].Upgrade();
+                return;
+            }
+        }
+
+        BuffHandler newBuffHandler = gameObject.AddComponent<BuffHandler>();
+        newBuffHandler.buff = buff;
+        newBuffHandler.Reset();
+        newBuffHandler.Upgrade();
+        buffhandlers.Add(newBuffHandler);
+    }
+
     public void UpgradeRefresh() { gameObject.GetComponent<RefreshHandler>().Upgrade(); }
 
     private void Reset() {
@@ -75,6 +93,7 @@ public class PlayerHandler : MonoBehaviour {
         GetComponent<Shield>().Reset();
         player.income = player.defaultIncome;
         ResetWeapons();
+        ResetBuffs();
         GetComponent<RefreshHandler>().Reset();
     }
 
@@ -83,9 +102,15 @@ public class PlayerHandler : MonoBehaviour {
         weaponhandlers = new List<WeaponHandler>();
     }
 
+    private void ResetBuffs() {
+        foreach (BuffHandler buffHandler in buffhandlers) buffHandler.Reset();
+        buffhandlers = new List<BuffHandler>();
+    }
+
     public void Die() {
         StartCoroutine(SlowDownTimeOnDeath(.5f, .05f, 10));
         ResetWeapons();
+        ResetBuffs();
     }
 
     IEnumerator SlowDownTimeOnDeath(float startTimeScale, float endTimeScale, int duration) {
@@ -100,5 +125,8 @@ public class PlayerHandler : MonoBehaviour {
         Time.timeScale = endTimeScale;
     }
 
-    private void OnDestroy() { foreach (WeaponHandler weaponhandler in weaponhandlers) weaponhandler.Reset(); }
+    private void OnDestroy() {
+        foreach (WeaponHandler weaponhandler in weaponhandlers) weaponhandler.Reset();
+        foreach (BuffHandler buffhandler in buffhandlers) buffhandler.Reset();
+    }
 }

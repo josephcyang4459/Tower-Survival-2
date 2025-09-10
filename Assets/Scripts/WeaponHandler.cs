@@ -21,7 +21,7 @@ public class WeaponHandler : MonoBehaviour {
 
     public void Fire(GameObject target) {
         if (weapon.weaponType == WeaponType.Ranged) {
-            GameObject newProjectile = Instantiate(weapon.projectile);
+            GameObject newProjectile = Instantiate(weapon.projectilePrefab);
             ProjectileHandler projectileHandler = newProjectile.GetComponent<ProjectileHandler>();
             projectileHandler.target = target;
             projectileHandler.sourceWeapon = this;

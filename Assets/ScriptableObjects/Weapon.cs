@@ -19,7 +19,7 @@ public class Weapon : Item {
 
     [Header("Ranged Weapon Parameters | Not Required for Melee Weapons")]
     [SerializeField] public int range;
-    [SerializeField] public GameObject projectile;
+    [SerializeField] public GameObject projectilePrefab;
     [HideInInspector] public float trueRange;
 }
 

@@ -12,7 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57acc209e9d413429f5ccab13c73b6d, type: 3}
   m_Name: SiegeCannon
   m_EditorClassIdentifier: 
+  description: 
   level: 0
+  maxLevel: 99
+  goldCost: 0
+  weaponType: 0
+  damage: 0
+  defaultDamage: 0
+  damagePerLevel: 0
+  damageType: 2
   atkSpeed: 0
+  knockback: 0
+  knockbackSpeed: 0
+  splash: 0
+  secondsBetweenAttacks: 0
   range: 0
-  projectile: {fileID: 11400000, guid: 3f41eb36436751241b5cfb0581c4ae32, type: 2}
+  projectile: {fileID: 0}
+  trueRange: 0
