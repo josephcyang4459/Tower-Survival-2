@@ -40,18 +40,18 @@ public class WeaponHandler : MonoBehaviour {
         // Shield Damage
         if (shield != null && shield.value != 0) {
             if (shield.value > weapon.damage)
-                shield.TakeDamage(weapon.damage);
+                shield.ReduceResource(weapon.damage);
             else {
-                health.TakeDamage(weapon.damage - shield.value);
-                shield.TakeDamage(shield.value);
+                health.ReduceResource(weapon.damage - shield.value);
+                shield.ReduceResource(shield.value);
             }
         }
         // Health Damage
         else if (health.value != 0) {
             if (health.value > weapon.damage)
-                health.TakeDamage(weapon.damage);
+                health.ReduceResource(weapon.damage);
             else
-                health.TakeDamage(health.value);
+                health.ReduceResource(health.value);
         }
     }
 

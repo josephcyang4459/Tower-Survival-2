@@ -101,7 +101,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30c67749941796b449316b47efabf764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultValue: 100
+  defaultValue: 50
+  minValue: 0
+  damaged:
+    m_PersistentCalls:
+      m_Calls: []
+  death:
+    m_PersistentCalls:
+      m_Calls: []
   value: 100
   maxValue: 100
 --- !u!114 &9049611699454807807
